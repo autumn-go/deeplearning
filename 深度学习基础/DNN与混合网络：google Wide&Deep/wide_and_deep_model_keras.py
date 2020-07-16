@@ -4,9 +4,9 @@
 '''
 
 import pandas as pd
-from keras.models import Sequential
-from keras.layers import Dense, Merge
-from sklearn.preprocessing import MinMaxScaler
+from keras.models import Sequential#序贯模型
+from keras.layers import Dense, Merge#层，拼接
+from sklearn.preprocessing import MinMaxScaler#幅度缩放
 
 #所有的数据列
 COLUMNS = [
@@ -47,7 +47,7 @@ def preprocess(df):
     y = df[LABEL_COLUMN].values
     df.pop(LABEL_COLUMN)
     
-    df = pd.get_dummies(df, columns=[x for x in CATEGORICAL_COLUMNS])
+    df = pd.get_dummies(df, columns=[x for x in CATEGORICAL_COLUMNS])#onehot编码
 
     # TODO: 对特征进行选择，使得网络更高效
     
@@ -55,7 +55,7 @@ def preprocess(df):
     # from sklearn.preprocessing import PolynomialFeatures
     # X = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False).fit_transform(X)
     
-    df = pd.DataFrame(MinMaxScaler().fit_transform(df), columns=df.columns)
+    df = pd.DataFrame(MinMaxScaler().fit_transform(df), columns=df.columns)#幅度一致
 
     X = df.values
     return X, y
