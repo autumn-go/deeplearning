@@ -21,11 +21,11 @@ training_epochs = 25
 batch_size = 100
 display_step = 1
 
-# tf Graph Input
-x = tf.placeholder(tf.float32, [None, 784]) # mnist data image of shape 28*28=784
+# tf Graph Input，容器，存储数据
+x = tf.placeholder(tf.float32, [None, 784]) # mnist data image of shape 28*28=784，展平数据，NONE表示先不管维度
 y = tf.placeholder(tf.float32, [None, 10]) # 0-9 digits recognition => 10 classes
 
-# Set model weights
+# Set model weights，可变变量，初始化为0
 W = tf.Variable(tf.zeros([784, 10]))
 b = tf.Variable(tf.zeros([10]))
 
